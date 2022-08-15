@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Edu+TAS+Beginner:wght@400;600&family=Londrina+Shadow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Dancing+Script:wght@400;500;600&family=Londrina+Shadow&display=swap');
+
+$headerFont: 'Dancing Script';
+$defaultFont: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$headerFontSize: 25px;
+$headerFontWeight: 600;
+
+$vueGreen: #00bd7e;
+$darkGreen: #00bd7e33;
+$colorText: #ebebeba3;
+$editText: #222222;
+$editBack: #dfe0e0;
+$warningShadow: red;
+$warningText: #790909;
+$warningBack: pink;
+$postText: #222222;
+$postBack: #FFEB67;
+$postBorder: #dbca5c;
+$postBorderHover: #ffc720;
+$postTextButton: #222222;
+
+$postWidth: 250px;
+$postHeight: 250px;
+$detailViewWidth: 400px;
+$detailViewHeight: 400px;
+$postMargin: 10px;
+$postRadius: 5px;

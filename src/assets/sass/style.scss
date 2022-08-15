@@ -1,0 +1,452 @@
+@import './utils/variables';
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // font-family: "Edu TAS Beginner";
+    // font-family: "Dancing Script";
+}
+
+#app {
+    margin: 50px auto 0;
+    padding: 2rem 0;
+    font-weight: normal;
+    display: flex;
+    // flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 1460px;
+}
+
+body {
+    background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
+    // background-image: url('../../img/cork-board.jpg');
+    background-image: url('../../img/desk.jpg');
+    display: flex;
+    flex-direction: row;
+}
+  
+a,
+.green {
+text-decoration: none;
+// color: $vueGreen;
+// transition: 0.4s;
+}
+
+.post-it {
+    border: 2px solid $postBorder;
+    border-radius: $postRadius;
+    background-color: $postBack;
+    color: $postText;
+    width: $postWidth;
+    height: $postHeight;
+    margin: $postMargin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    &--logo {
+        // position: absolute;
+        // width: 100%;
+        // width: 50px;
+        max-width: 150px;
+        height: auto;
+        & img {
+            // width: 300%;
+            width: 100%;
+            height: auto;
+            // position: absolute;
+            // top: -10%;
+            // left: -220px;
+        }
+    }
+    &--count {
+        width: 100%;
+        top: -10px;      
+        color: $postText; 
+        & span {
+            text-decoration: underline;
+            padding-left: $postMargin;
+            font-weight: $headerFontWeight;
+            font-size: $headerFontSize;
+            font-family: $headerFont;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            width: 100%;
+        }
+    }
+    &--filter {
+        margin-left: $postMargin;
+        &--input {
+            padding-left: $postRadius;
+            margin-right: calc($postMargin / 2);
+            border: 2px solid $postBorder;
+            border-radius: $postRadius;
+            background-color: $postBack;
+            color: $postText;
+            border-radius: $postRadius;
+            width: 60px;
+            transition: all 0.5s ease-in-out;
+            font-style: italic;
+            &:focus {
+                outline: 0;
+                font-style: normal;
+                width: $postWidth;
+                margin-right: calc($postMargin * 2);
+                background-color: lighten($postBack, 20%);
+                &::placeholder {
+                    color: transparent;
+                }
+            }
+        }
+        &--reset {
+            cursor: pointer;
+            width: 100px;
+            height: 20px;
+            font-weight: 600;
+            border: 2px solid $postBorderHover;
+            background-color: $postBorderHover;
+            color: $postTextButton;
+            border-radius: 5px;
+            margin-bottom: 3px;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+                color: $postBorderHover;
+                border-color: $postBorderHover;
+                box-shadow: 0 0 5px $postBorderHover;
+                background-color: lighten($postBack, 10%);
+            }
+            &:focus {
+                outline: 2px solid lighten($postBack, 10%);
+            }       
+        }
+    }
+    &--wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    &--details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        height: 100%;
+        padding: 0 5px;
+        & h3 {
+            width: $postWidth;
+            height: 15%;
+            font-weight: 600;
+            text-align: center;
+            overflow-wrap: break-word;
+            overflow: hidden;
+            padding: 0 5px;       
+            border-radius: $postRadius $postRadius 0 0;
+            &:focus {
+                outline: 0;
+                width: calc($postWidth - $postRadius/2);
+                color: $editText;
+                background-color: $editBack;
+            }
+        }
+        & p {
+            width: $postWidth;
+            height: 85%;
+            text-align: center;
+            overflow-wrap: break-word;
+            overflow: hidden;
+            padding: 0 5px;
+            &:focus {
+                outline: 0;
+                display: flex;
+                justify-content: start;
+                color: $editText;
+                width: calc($postWidth - $postRadius/2);
+                background-color: $editBack;
+            }
+        }
+    }
+    &--footer {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: baseline;
+        justify-content: space-around;
+        width: 100%;
+        & .delete-post {
+            width: 100px;
+            height: 20px;
+            border: 2px solid $warningBack;
+            border-radius: 5px;
+            background-color: $warningBack;
+            color: $warningText;
+            margin-bottom: 3px;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+                color: $warningShadow;
+                border-color: $warningShadow;
+                box-shadow: 0 0 5px $warningShadow;
+                background-color: lighten($warningBack, 4%);
+            }           
+        }
+        & button {
+            cursor: pointer;
+            width: 100px;
+            height: 20px;
+            font-weight: 600;
+            border: 2px solid $postBorderHover;
+            background-color: $postBorderHover;
+            color: $postTextButton;
+            border-radius: 5px;
+            margin-bottom: 3px;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+                color: $postBorderHover;
+                border-color: $postBorderHover;
+                box-shadow: 0 0 5px $postBorderHover;
+                background-color: lighten($postBack, 10%);
+            }            
+        }
+    }
+}
+
+.view--message {
+    color: $postText;
+    text-align: center;
+    font-style: italic;
+    font-size: 12px;
+    margin-bottom: $postMargin;
+}
+.view-post-it {
+    border: 2px solid $postBorder;
+    border-radius: $postRadius;
+    background-color: $postBack;
+    color: $postText;
+    width: $postWidth;
+    height: $postHeight;
+    margin: $postMargin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: $detailViewWidth;
+    height: $detailViewHeight;
+    &--details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        padding: 0 10px;
+        & h3 {
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.4s ease-in-out;
+            &:focus {
+                outline: 0;
+                font-weight: 400;
+                display: flex;
+                justify-content: start;
+                text-align: justify;
+                color: $editText;
+                padding-left: 5px;
+                background-color: lighten($postBack, 20%);                
+            }
+        }
+        & p {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+            overflow: auto;
+            transition: all 0.4s ease-in-out;
+            &:focus {
+                height: 100%;
+                outline: 0;
+                display: flex;
+                justify-content: start;
+                text-align: justify;
+                color: $editText;
+                padding-left: 5px;
+                background-color: lighten($postBack, 20%);             
+            }
+        }
+
+    }
+    &--footer {
+        & button {
+            cursor: pointer;
+            width: 50px;
+            height: 20px;
+            font-weight: 600;
+            border: 2px solid $postBorderHover;
+            background-color: $postBorderHover;
+            color: $postTextButton;
+            border-radius: 5px;
+            margin-bottom: 3px;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+                color: $postBorderHover;
+                border-color: $postBorderHover;
+                box-shadow: 0 0 5px $postBorderHover;
+                background-color: lighten($postBack, 10%);
+            }            
+        }
+    }
+}
+
+.new-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: $postWidth;
+    height: $postHeight;
+    margin: $postMargin;
+    font-size: 90px;
+    font-weight: 600;
+    color: $vueGreen;
+    border: 2px solid $postBorder;
+    border-radius: $postRadius;
+    background-color: rgb(255, 235, 103, 0.2);
+    color: $postText;
+    cursor: pointer;
+    &--title {
+        background-color: $postBack;
+        border-top: none;
+        border-left: 2px solid $postBorder;
+        border-right: 2px solid $postBorder;
+        border-bottom: none;
+        text-align: center;
+        border-radius: $postRadius $postRadius 0 0;
+        width: $postWidth;
+        height: 20%;
+        padding: 0px 5px;
+        color: $postText;
+        font-size: 18px;
+        transition: all 0.5s ease-in-out;
+        font-family: $headerFont;
+        &:focus {
+            outline: 0;
+            background-color: lighten($postBack, 20%);
+            text-align: left;
+            font-family: $defaultFont;
+            &::placeholder {
+                color: transparent;
+            }
+        }
+    }
+    &--content {
+        background-color: $postBack;
+        border-top: none;
+        border-left: 2px solid $postBorder;
+        border-right: 2px solid $postBorder;
+        border-bottom: none;
+        text-align: center;
+        width: $postWidth;
+        height: 69%;
+        display: block;
+        padding: 0 5px;
+        color: $postText;
+        font-size: 18px;
+        transition: all 0.5s ease-in-out;
+        resize: none;
+        font-family: $headerFont;
+        &:focus {
+            outline: 0;
+            text-align: left;
+            font-family: $defaultFont;
+            background-color: lighten($postBack, 20%);
+            &::placeholder {
+                color: transparent;
+            }
+        }
+    }
+    &--footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-end;
+        width: $postWidth;
+        background-color: $postBack;
+        height: 11%;
+        border-top: none;
+        border-left: 2px solid $postBorder;
+        border-right: 2px solid $postBorder;
+        border-bottom: none;
+        border-radius: 0 0 $postRadius $postRadius;
+        & button {
+            cursor: pointer;
+            width: 100px;
+            height: 20px;
+            font-weight: 600;
+            border: 2px solid $postBorderHover;
+            background-color: $postBorderHover;
+            color: $postTextButton;
+            border-radius: 5px;
+            margin-bottom: 3px;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+                color: $postBorderHover;
+                border-color: $postBorderHover;
+                box-shadow: 0 0 5px $postBorderHover;
+                background-color: lighten($postBack, 10%);
+            }            
+        }        
+    }
+}
+
+#hideMe {
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@media (hover: hover) {
+a:hover {
+    border-color: $postBorderHover;
+}
+}
+
+@media screen and (max-width: 650px) {
+    .post-it--logo {
+        & img {
+            display: none;
+        }
+    }
+    #app {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .post-it--count {
+        top: -10px;
+        & span {
+            text-decoration: none;
+        }
+    }
+}
+
+// @media (min-width: 1024px) {
+// body {
+//     display: flex;
+//     place-items: center;
+// }
+
+// #app {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr;
+//     padding: 0 2rem;
+// }
+// }
