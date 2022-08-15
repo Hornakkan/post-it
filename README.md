@@ -1,6 +1,6 @@
 # post_it
 
-Post-it project for Coding Academy 2022
+<b>Post-it project for Epitech school: Coding Academy 2022.</b>
 
 
 Wrap up: 
